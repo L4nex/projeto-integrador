@@ -13,7 +13,7 @@ router.post("/config", async function (req, res) {
 // Rota para listar todos os usuários
 router.get("/configs", async function (req, res) {
   const configs = await configService.listConfig();
-  return res.json.parse(configs);
+  return res.json(configs);
 });
 
 module.exports = router

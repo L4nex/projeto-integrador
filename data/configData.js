@@ -8,7 +8,16 @@ exports.createConfig = function(config){
 };
 
 exports.listConfig = function(){
-    return database.query(
-        'SELECT * FROM config;'
-    );
+    return new Promise((resolve, reject) =>
+        database.query(
+            'SELECT * FROM config;',
+            (err, rows) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(rows);
+                }
+            }
+        )
+    ) 
 };

@@ -22,15 +22,40 @@ exports.deleteUser = function(id){
     );  
 };
 
-exports.showUser = function(id){
+exports.showUsers = function(id){
     return database.query(
         'SELECT * FROM usuarios where id = ?;',
         [id]
     );
 };
 
+exports.showUser = function(id){
+    return new Promise((resolve, reject) =>
+        database.query(
+            'SELECT * FROM usuarios where id = ?;',
+            [id],
+            (err, rows) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(rows);
+                }
+            }
+        )
+    ) 
+};
+
 exports.listUsers = function(){
-    return database.query(
-        'SELECT * FROM usuarios;'
-    );
+    return new Promise((resolve, reject) =>
+        database.query(
+            'SELECT * FROM usuarios;',
+            (err, rows) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(rows);
+                }
+            }
+        )
+    ) 
 };
