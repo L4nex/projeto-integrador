@@ -4,7 +4,7 @@ const { v4: uuidv4 } = require('uuid');
 exports.createUser = function(user){
     return database.query(
     'INSERT INTO usuarios(nome, token, id_config_usuario) VALUES (?, ?, ?)',
-    [user.nome, uuidv4(), 1]
+    [user.nome, uuidv4(), user.id_config_usuario]
     );
 };
 
