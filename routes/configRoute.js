@@ -16,5 +16,5 @@ router.get("/configs", async function (req, res) {
   return res.json(configs);
 });
 
-module.exports = router
+module.exports = router;
   
